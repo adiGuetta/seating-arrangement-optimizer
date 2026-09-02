@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Seating Planner",
+    "slug": "seating-planner",
+    "version": "1.0.0",
+    "scheme": "seating-planner",
+    "ios": {
+      "bundleIdentifier": "com.seatingplanner.app",
+      "googleServicesFile": "./GoogleService-Info.plist"
+    },
+    "android": {
+      "package": "com.seatingplanner.app",
+      "googleServicesFile": "./google-services.json"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      "@react-native-google-signin/google-signin",
+      ["expo-build-properties", { "android": { "usesCleartextTraffic": true } }]
+    ]
+  }
+}

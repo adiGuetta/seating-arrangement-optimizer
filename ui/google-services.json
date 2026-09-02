@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "616555091525",
+    "project_id": "wedding-seating-75c25",
+    "storage_bucket": "wedding-seating-75c25.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616555091525:android:ab362c19a5bd8e133cb52c",
+        "android_client_info": {
+          "package_name": "com.seatingplanner.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616555091525-v2nsc1ou583h7qlak98oo6nfg0uns46g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3pgiS_MAL-Q9tobxRLL-F7ZVKtyDicQc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616555091525-v2nsc1ou583h7qlak98oo6nfg0uns46g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "616555091525-q8r36nlbclv47d3fh6rnumvg7ei5nba3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

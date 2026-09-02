@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seating Arrangement Manager</title>
+<style>
+  :root { --primary: #6C63FF; --bg: #FAFAFA; --card: #FFF; --text: #1A1A2E; --muted: #6B7280; --border: #E5E7EB; --accent: #EEF0FF; --radius: 16px; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  .hero { text-align: center; padding: 80px 24px 60px; background: linear-gradient(135deg, var(--primary), #8B83FF); color: #FFF; }
+  .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
+  .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
+  .hero-btn { display: inline-block; background: #FFF; color: var(--primary); font-weight: 700; font-size: 1.1rem; padding: 14px 36px; border-radius: 30px; text-decoration: none; transition: transform 0.2s; }
+  .hero-btn:hover { transform: scale(1.05); }
+
+  .how { background: var(--accent); padding: 60px 24px; }
+  .how h2 { text-align: center; font-size: 2rem; margin-bottom: 48px; }
+  .steps { display: flex; gap: 32px; max-width: 960px; margin: 0 auto; }
+  .step { flex: 1; text-align: center; }
+  .step-num { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: #FFF; font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+  .step h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .step p { color: var(--muted); font-size: 0.9rem; }
+
+  .features { max-width: 800px; margin: 0 auto; padding: 60px 24px; }
+  .features > h2 { text-align: center; font-size: 2rem; margin-bottom: 48px; }
+  .feature { margin-bottom: 48px; }
+  .feature h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--primary); }
+  .feature p { color: var(--muted); font-size: 1rem; margin-bottom: 10px; }
+  .feature ul { color: var(--muted); font-size: 0.95rem; padding-left: 20px; }
+  .feature li { margin-bottom: 6px; }
+  .feature .tip { background: var(--accent); border-left: 3px solid var(--primary); padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 0.9rem; color: var(--text); margin-top: 10px; }
+
+  .solver { max-width: 960px; margin: 0 auto; padding: 60px 24px; }
+  .solver h2 { text-align: center; font-size: 2rem; margin-bottom: 16px; }
+  .solver > p { text-align: center; color: var(--muted); max-width: 700px; margin: 0 auto 40px; }
+  .solver-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .solver-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+  .solver-card h4 { font-size: 1rem; margin-bottom: 6px; }
+  .solver-card p { color: var(--muted); font-size: 0.9rem; }
+
+  footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 2rem; }
+    .steps { flex-direction: column; }
+    .solver-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <h1>Seating Arrangement Manager</h1>
+  <p>Organize your guest list as a family tree, then let our AI-powered solver find the optimal seating arrangement — keeping families together and nobody sitting alone.</p>
+  <a href="/" class="hero-btn">Open App →</a>
+</section>
+
+<section class="how">
+  <h2>How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Build Your Guest Tree</h3>
+      <p>Organize guests into groups and subgroups — Bride's Side, Groom's Family, College Friends, etc.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Set Preferences</h3>
+      <p>Choose table size, how strongly to keep families together, and set group distances.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Generate & Compare</h3>
+      <p>The solver produces multiple Pareto-optimal arrangements. Compare, tweak, and save your favorites.</p>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <h2>Features</h2>
+
+  <div class="feature">
+    <h3>🌳 Hierarchical Guest Tree</h3>
+    <p>Organize guests into a tree structure with as many levels as you need. Top-level groups like "Bride's Side" and "Groom's Side" can contain subgroups for families, friend circles, coworkers, and more. The tree structure tells the solver who should sit near whom — guests closer in the tree are more likely to share a table.</p>
+    <ul>
+      <li>Create groups and nest them to any depth</li>
+      <li>Add guests to any group — leaf or internal</li>
+      <li>All guests within the same group are always seated together (they're treated as an atomic unit by the solver)</li>
+      <li>You can have multiple root-level groups — the solver handles them automatically</li>
+    </ul>
+    <div class="tip">💡 <strong>Tip:</strong> If you want individual guests to be independently assignable to different tables, put each one in their own group.</div>
+  </div>
+
+  <div class="feature">
+    <h3>🔀 Moving Groups in the Tree</h3>
+    <p>Restructure your guest tree at any time. There are two ways to move a group to a different parent:</p>
+    <ul>
+      <li><strong>Tree View (visual):</strong> Open the tree view, then <strong>long-press</strong> a node to start moving it. Valid drop targets will highlight with a dashed border and an arrow icon. Tap the destination node to complete the move. The group and all its subgroups move together. Tap "Cancel" to abort.</li>
+      <li><strong>Edit Group:</strong> Open any group, tap "Edit Group", and use the parent picker to select a new parent — including "None (top-level)" to make it a root group.</li>
+      <li><strong>List View:</strong> In the event's group list, tap the drag handle (≡) on a group to start moving, then tap the target group.</li>
+    </ul>
+    <div class="tip">💡 <strong>Tip:</strong> You can't move a group into its own subtree — the app prevents circular references.</div>
+  </div>
+
+  <div class="feature">
+    <h3>⚖️ Group Distance Weights</h3>
+    <p>Control how "far apart" branches of your tree are in the solver's eyes. The weight on each group's edge determines how strongly it separates that branch from its parent.</p>
+    <ul>
+      <li><strong>Higher weight</strong> (e.g. 5) = guests in this branch are less likely to share a table with people outside it. Use this for major divisions like Bride's Side vs. Groom's Side.</li>
+      <li><strong>Lower weight</strong> (e.g. 0.5) = more mixing allowed. Use this for closely related sub-families you don't mind sitting together.</li>
+      <li><strong>Default is 1</strong> — every edge counts equally, like a simple hop count.</li>
+    </ul>
+    <p>Set the weight when creating or editing a group. The tree view shows weights on edges where they differ from 1.</p>
+  </div>
+
+  <div class="feature">
+    <h3>🧬 AI-Powered Seating Solver</h3>
+    <p>When you tap "Generate Seating", the app sends your guest tree to an evolutionary optimization solver (NSGA-II) enhanced with a Graph Neural Network. The solver minimizes two objectives simultaneously:</p>
+    <ul>
+      <li><strong>Number of tables</strong> — fewer is better</li>
+      <li><strong>Seating penalty</strong> — a combination of guest loneliness (being far from family at your table) and family separation (related people split across tables)</li>
+    </ul>
+    <p>The result is a set of Pareto-optimal solutions — each one is the best possible arrangement for a given number of tables. You choose the trade-off that works for you.</p>
+    <div class="tip">💡 <strong>Tip:</strong> The solver typically takes 30–60 seconds. A spinner shows while it's working. If the solver is unavailable, the app falls back to random seating.</div>
+  </div>
+
+  <div class="feature">
+    <h3>🎛️ Tuning Parameters</h3>
+    <p>Before generating, you can adjust three parameters that influence the solver:</p>
+    <ul>
+      <li><strong>Max Table Size:</strong> The maximum number of guests per table (4–20). The solver will never exceed this.</li>
+      <li><strong>Keep Families Together (α):</strong> How strongly to penalize lonely guests. Higher values mean the solver tries harder to keep related people at the same table. Default: 2.0.</li>
+      <li><strong>Avoid Lonely Guests (p):</strong> The exponent on the loneliness penalty. Higher values punish extreme isolation more harshly — a single person sitting alone is penalized much more than two people from the same family. Default: 2.0.</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <h3>🔄 Compare & Save Candidates</h3>
+    <p>The solver returns multiple candidate arrangements, each with a different number of tables. For each candidate you can see:</p>
+    <ul>
+      <li>Total number of tables and guests</li>
+      <li>Average coherency score across all tables</li>
+      <li>Detailed per-table breakdown with visual table circles</li>
+    </ul>
+    <p>Tap any candidate to preview it in full detail. Tap the save icon to keep it as a saved arrangement. Discard all unsaved candidates when you're done.</p>
+  </div>
+
+  <div class="feature">
+    <h3>✋ Manual Adjustments</h3>
+    <p>After generating and saving an arrangement, fine-tune it by moving individual guests between tables:</p>
+    <ul>
+      <li>Tap a guest to select them — they'll be highlighted</li>
+      <li>Tap the destination table (either the circle or the list header) to move them there</li>
+      <li>Metrics update in real-time so you can see the impact of every move</li>
+      <li>Tap the selected guest again to deselect</li>
+    </ul>
+    <p>Use the search bar to quickly find a guest by name across all tables.</p>
+  </div>
+
+  <div class="feature">
+    <h3>📊 Per-Table Metrics</h3>
+    <p>Every table displays two key metrics to help you evaluate the arrangement:</p>
+    <ul>
+      <li><strong>Coherency (C):</strong> What fraction of the table comes from the same group. Green (≥70%) = great, yellow (40–70%) = okay, red (&lt;40%) = very mixed.</li>
+      <li><strong>Loneliness (L):</strong> The size of the smallest group at the table. Red (1) = someone is sitting alone, yellow (2) = a pair, green (3+) = comfortable.</li>
+    </ul>
+    <p>A ⚠ warning highlights the globally loneliest group across all tables. Sort tables by coherency, loneliness, or guest count using the sort bar.</p>
+  </div>
+
+  <div class="feature">
+    <h3>👤 Guest Hierarchy in Arrangements</h3>
+    <p>Every guest in a seating arrangement shows their full path in the tree — for example, "Our Event › Bride's Side › Mom's Side". This makes it easy to distinguish guests with the same name who belong to different branches of the family.</p>
+  </div>
+
+  <div class="feature">
+    <h3>🔍 Subtree View</h3>
+    <p>Want to see where just one branch of the family ended up? The subtree view lets you:</p>
+    <ul>
+      <li>Pick any group as the subtree root (e.g. "Bride's Family")</li>
+      <li>Pick any saved arrangement</li>
+      <li>See only the tables that contain guests from that branch</li>
+    </ul>
+    <p>Guests from outside the subtree are shown dimmed with an "outside subtree" label, so you can see who else is at those tables for context.</p>
+  </div>
+
+  <div class="feature">
+    <h3>📋 Multiple Events</h3>
+    <p>Planning more than one event? The app supports multiple independent events, each with its own guest tree, seating config, and saved arrangements.</p>
+    <ul>
+      <li><strong>Create</strong> a new event from scratch</li>
+      <li><strong>Clone</strong> an existing event to use it as a starting point (all groups and guests are deep-copied with new IDs)</li>
+      <li><strong>Export a subtree</strong> from one event into another — useful when a subset of guests attends a different event</li>
+    </ul>
+    <p>Tap the event name or stats to open it. Use the pencil icon to rename or change the date, and the trash icon to delete.</p>
+  </div>
+
+  <div class="feature">
+    <h3>🌐 Bilingual (English & Hebrew)</h3>
+    <p>The entire app is available in English and Hebrew with full RTL support. Tap the language toggle in the top bar to switch instantly. All labels, hints, button text, and layout direction adapt immediately — no reload needed.</p>
+  </div>
+
+  <div class="feature">
+    <h3>🌙 Dark Mode</h3>
+    <p>Toggle between light and dark themes using the sun/moon icon in the top bar. Your preference is remembered across sessions.</p>
+  </div>
+
+  <div class="feature">
+    <h3>☁️ Cloud Sync & Offline</h3>
+    <p>You can use the app in two modes:</p>
+    <ul>
+      <li><strong>Signed in (Google):</strong> Your events are synced to Firebase and accessible from any device. Changes save automatically.</li>
+      <li><strong>Offline / Guest mode:</strong> Skip login and work locally. Data is saved to your browser's local storage. You can sign in later to sync.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="solver">
+  <h2>Under the Hood: The Solver</h2>
+  <p>The seating optimizer is a multi-objective evolutionary algorithm that treats your guest tree as a real mathematical structure.</p>
+  <div class="solver-grid">
+    <div class="solver-card">
+      <h4>🌲 Weighted Tree Distance</h4>
+      <p>Guests are compared by their weighted distance in the family tree. Each edge's weight (set by you) determines how "far apart" two branches are. The solver uses an Euler-tour LCA structure for O(1) distance queries between any two groups.</p>
+    </div>
+    <div class="solver-card">
+      <h4>🧬 NSGA-II Optimization</h4>
+      <p>A population of 100 candidate seatings evolves over 250 generations using crossover and mutation operators. Two objectives are optimized simultaneously: minimize table count and minimize a penalty combining loneliness and family separation.</p>
+    </div>
+    <div class="solver-card">
+      <h4>🧠 GNN Initialization</h4>
+      <p>A Graph Neural Network, pre-trained on thousands of synthetic guest trees, provides smart starting arrangements. Each node's features include tree depth, group size, and subtree population fraction. This gives the evolutionary optimizer a significant head start.</p>
+    </div>
+    <div class="solver-card">
+      <h4>📐 Pareto Front</h4>
+      <p>Instead of one "best" answer, you get the full Pareto front — every optimal trade-off between table count and seating quality. Each solution is the best possible arrangement for its number of tables.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Seating Arrangement Manager — Built with Expo, Flask, and a lot of love 💜
+</footer>
+
+</body>
+</html>

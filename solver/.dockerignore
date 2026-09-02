@@ -1,0 +1,9 @@
+__pycache__
+figures
+*.pdf
+*.tex
+tuning_results.json
+run_all.py
+generate_examples.py
+validate_examples.py
+train_and_evaluate_gnn.py

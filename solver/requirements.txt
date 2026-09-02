@@ -1,0 +1,8 @@
+numpy
+pymoo>=0.6.0
+scipy
+matplotlib
+flask
+flask-cors
+gunicorn
+firebase-admin
