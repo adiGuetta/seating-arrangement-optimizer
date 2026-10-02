@@ -256,7 +256,7 @@ solver/
 └── requirements.txt        # Python dependencies
 ```
 
-### Research artifacts (not in Docker image)
+### Research scripts and report artifacts
 
 ```
 solver/
@@ -265,6 +265,7 @@ solver/
 ├── validate_examples.py    # Validates generated examples
 ├── train_and_evaluate_gnn.py # GNN training script
 ├── tuning_results.json     # Hyperparameter tuning results
+research/
 ├── report.tex              # LaTeX source for the research paper
 ├── report.pdf              # Compiled research paper
 └── figures/                # PNG figures for the report

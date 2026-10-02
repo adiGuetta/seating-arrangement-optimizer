@@ -12,7 +12,7 @@ python3.10 train_and_evaluate_gnn.py --step 2   # Compare with/without GNN (~50 
 
 ## Documentation
 
-- **`report.pdf`** â€” Full technical report (13 pages) with algorithms, examples, figures, hyperparameter tuning results, and reproduction instructions.
+- **`../research/report.pdf`** — Full technical report (13 pages) with algorithms, examples, figures, hyperparameter tuning results, and reproduction instructions.
 
 ## Core Modules
 
